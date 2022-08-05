@@ -1,7 +1,5 @@
 
-
-
-// module 
+// module (immediately invoked function )
 let gameBoard = (() => {
 
     let gameArray = [];
@@ -14,12 +12,13 @@ let gameBoard = (() => {
             gameArray.push(" ");
             let cell = document.createElement("div");
             cell.className = 'cell';
-            cell.id = 'cell' + i;
+            cell.id = i;
             gb.appendChild(cell);
         }
     }
 
     function addEntry() {
+        console.log("testing the function")
 
 
     }
@@ -34,8 +33,33 @@ let gameBoard = (() => {
 })();
 
 let number = 0;
+gameBoard.generateBoard();
+
+let buttonOnGrid = document.querySelectorAll('div.cell');
+buttonOnGrid.forEach(cell => {
+    cell.addEventListener('click', gameBoard.addEntry)})
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 let buttonOnGrid = document.querySelectorAll('div.cell');
 buttonOnGrid.forEach(cell => {
     cell.addEventListener('click', function () {
@@ -52,6 +76,5 @@ buttonOnGrid.forEach(cell => {
         }
     });
 })
+*/
 
-
-gameBoard.generateBoard();
