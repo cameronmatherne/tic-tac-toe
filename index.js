@@ -5,6 +5,10 @@ let gameBoard = (() => {
     let gameArray = [];
     let gb = document.querySelector('.gameBoard');
 
+    // counter to keep track of current player
+    // even number == player one
+    // odd number == player two
+    let counter = 0;
 
     // create gameboard with CSS grid 
     function generateBoard() {
@@ -17,27 +21,67 @@ let gameBoard = (() => {
         }
     }
 
-    function addEntry() {
-        console.log("testing the function")
+    function scanForMove() {
+        let buttonOnGrid = document.querySelectorAll('div.cell');
+        buttonOnGrid.forEach(cell => {
+            cell.addEventListener('click', function () {
+                console.log("testing cell: " + cell.id)
+                updateArray(cell.id);
+
+            })
+        })
+    }
+
+    function updateArray(id) {
+        if (gameArray[id] == " ") {
+            if (counter % 2 == 0) {
+                gameArray[id] = "X";
+                counter++;
+            }
+            else if (counter % 2 != 0) {
+                gameArray[id] = "O";
+                counter++;
+            }
+            console.log(gameArray)
+            console.log("counter: " + counter)
+            updateGrid(id);
+
+        }
+    }
+
+    function updateGrid(id) {
+        let currentCell = document.getElementById(id);
+
+        if (gameArray[id] == "X") {
+            currentCell.innerText = "X";
+        }
+        if (gameArray[id] == "O") {
+            currentCell.innerText = "O";
+        }
 
 
     }
 
     function resetBoard() {
-        for (const i=0; i<9; i++) {
+        for (let i = 0; i < 9; i++) {
             gameArray[i] == (" ");
         }
     }
 
-    return { generateBoard, addEntry, resetBoard }
+    return { generateBoard, resetBoard, scanForMove }
 })();
 
-let number = 0;
-gameBoard.generateBoard();
 
-let buttonOnGrid = document.querySelectorAll('div.cell');
-buttonOnGrid.forEach(cell => {
-    cell.addEventListener('click', gameBoard.addEntry)})
+
+
+gameBoard.generateBoard();
+gameBoard.scanForMove();
+
+
+
+
+
+
 
 
 
