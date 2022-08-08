@@ -16,3 +16,11 @@
     justify-content: center;
     flex-direction: column;
 }
+
+.divider {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    gap: 64px; 
+    font-size: 32px; 
+}

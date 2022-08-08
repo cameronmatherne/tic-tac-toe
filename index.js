@@ -21,11 +21,11 @@ let gameBoard = (() => {
         }
     }
 
+    // public function that sets the event listener to listen for any moves
     function scanForMove() {
         let buttonOnGrid = document.querySelectorAll('div.cell');
         buttonOnGrid.forEach(cell => {
             cell.addEventListener('click', function () {
-                console.log("testing cell: " + cell.id)
                 updateArray(cell.id);
 
             })
@@ -63,18 +63,27 @@ let gameBoard = (() => {
     }
 
     function resetBoard() {
-
+        let buttonOnGrid = document.querySelectorAll('div.cell');
+        gameArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+        buttonOnGrid.forEach(cell => {
+           cell.innerText = " ";
+            })
         console.log("testing reset function");
-        gameArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
-        for (let i = 0; i < 9; i++) {
-            updateGrid[i]
-        }
         console.log(gameArray)
     }
 
     return { generateBoard, resetBoard, scanForMove }
 
 })();
+
+
+const playerFactory = (name, symbol) => {
+
+    this.name = name;
+    this.symbol = symbol;
+    const score = 0;
+
+};
 
 
 gameBoard.generateBoard();
